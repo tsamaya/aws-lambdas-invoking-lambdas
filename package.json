@@ -6,7 +6,7 @@
   "scripts": {
     "lint": "eslint .",
     "pretest": "yarn lint",
-    "start": "DEBUG=awsl2l serverless offline start",
+    "start": "DEBUG=awsl2l NODE_ENV=development serverless offline start",
     "test": "echo \"Warning: no test specified\" && exit 0"
   },
   "repository": {
@@ -25,7 +25,6 @@
     "uuid": "^7.0.3"
   },
   "devDependencies": {
-    "aws-sdk": "^2.650.0",
     "eslint": "^6.8.0",
     "eslint-config-airbnb-base": "^14.1.0",
     "eslint-config-prettier": "^6.10.1",
@@ -33,5 +32,8 @@
     "prettier": "^2.0.2",
     "serverless": "^1.67.0",
     "serverless-offline": "^6.1.2"
+  },
+  "peerDependencies": {
+    "aws-sdk": "^2.650.0"
   }
 }
