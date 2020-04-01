@@ -1,0 +1,29 @@
+{
+  "name": "aws-lambdas-invoking-lambdas",
+  "version": "0.0.0",
+  "description": "AWS Lambdas invoking Lambdas",
+  "main": "handler.js",
+  "scripts": {
+    "start": "serverless offline start",
+    "test": "echo \"Warning: no test specified\" && exit 0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tsamaya/aws-lambdas-invoking-lambdas.git"
+  },
+  "keywords": [],
+  "author": "Arnaud Ferrand",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/tsamaya/aws-lambdas-invoking-lambdas/issues"
+  },
+  "homepage": "https://github.com/tsamaya/aws-lambdas-invoking-lambdas#readme",
+  "dependencies": {
+    "uuid": "^7.0.3"
+  },
+  "devDependencies": {
+    "aws-sdk": "^2.650.0",
+    "serverless": "^1.67.0",
+    "serverless-offline": "^6.1.2"
+  }
+}
