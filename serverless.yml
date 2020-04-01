@@ -40,6 +40,20 @@ functions:
           path: quick/{id}
           method: get
 
+  # Simulate a quick async response, for instance restfull api querying the DB
+  synchronously:
+    handler: handler.invokeSynchronously
+    events:
+      - http:
+          path: synchronously/{x}/{y}
+          method: get
+
+  syncFunc:
+    handler: handler.syncFunc
+
+  asyncFunc:
+    handler: handler.asyncFunc
+
 #    Define function environment variables here
 #    environment:
 #      variable2: value2
