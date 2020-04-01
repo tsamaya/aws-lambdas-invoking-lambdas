@@ -13,22 +13,6 @@ provider:
         - lambda:InvokeAsync
       Resource: '*'
 
-# you can add statements to the Lambda function's IAM Role here
-#  iamRoleStatements:
-#    - Effect: "Allow"
-#      Action:
-#        - "s3:ListBucket"
-#      Resource: { "Fn::Join" : ["", ["arn:aws:s3:::", { "Ref" : "ServerlessDeploymentBucket" } ] ]  }
-#    - Effect: "Allow"
-#      Action:
-#        - "s3:PutObject"
-#      Resource:
-#        Fn::Join:
-#          - ""
-#          - - "arn:aws:s3:::"
-#            - "Ref" : "ServerlessDeploymentBucket"
-#            - "/*"
-
 plugins:
   - serverless-offline
 
@@ -36,31 +20,35 @@ plugins:
 #  environment:
 #    variable1: value1
 
-# you can add packaging information here
-#package:
-#  include:
-#    - include-me.js
-#    - include-me-dir/**
-#  exclude:
-#    - exclude-me.js
-#    - exclude-me-dir/**
-
 functions:
+  # function available via API Gateway and internal use
   helloHTTP:
     handler: handler.helloHTTP
     events:
       - http:
           path: hello
           method: get
+  # function only available within AWS
   hello:
     handler: handler.hello
+
+  # Simulate a quick async response, for instance restfull api querying the DB
+  quick:
+    handler: handler.quick
+    events:
+      - http:
+          path: quick/{id}
+          method: get
 
 #    Define function environment variables here
 #    environment:
 #      variable2: value2
 #      s3: ${env:BUCKET}
 
+# ----------------------------------------------------------------------------
 # you can add CloudFormation resource templates here
+#
+# here are the resources for fetch and Ajax requests: in case of errors, prevent the CORS issue
 resources:
   Resources:
     GatewayResponseDefault4XX:
@@ -72,7 +60,6 @@ resources:
         ResponseType: DEFAULT_4XX
         RestApiId:
           Ref: 'ApiGatewayRestApi'
-        # StatusCode: '401'
     GatewayResponseDefault5XX:
       Type: 'AWS::ApiGateway::GatewayResponse'
       Properties:
@@ -82,4 +69,3 @@ resources:
         ResponseType: DEFAULT_5XX
         RestApiId:
           Ref: 'ApiGatewayRestApi'
-        # StatusCode: '500'
