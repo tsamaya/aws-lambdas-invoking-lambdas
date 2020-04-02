@@ -48,6 +48,14 @@ functions:
           path: synchronously/{x}/{y}
           method: get
 
+  # Simulate a long async process
+  asynchronously:
+    handler: handler.invokeASynchronously
+    events:
+      - http:
+          path: asynchronously/{id}
+          method: get
+
   syncFunc:
     handler: handler.syncFunc
 
