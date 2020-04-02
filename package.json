@@ -6,6 +6,7 @@
   "scripts": {
     "lint": "eslint .",
     "pretest": "yarn lint",
+    "prestart": "node ./scripts/env-check.js",
     "start": "DEBUG=awsl2l NODE_ENV=development serverless offline start",
     "test": "echo \"Warning: no test specified\" && exit 0"
   },
