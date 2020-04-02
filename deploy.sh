@@ -54,5 +54,6 @@ elif [[ $BRANCH == $DEVELOP ]]; then
   REGION=$AWS_REGION_DEV
 fi
 
-echo "Deploying from branch $BRANCH to stage $STAGE in region $REGION"
-npx serverless deploy  --aws-profile $AWS_PROFILE --stage $STAGE --region $REGION 
+echo "Deploy"
+echo "--Deploying from branch $BRANCH to stage $STAGE in region $REGION using profile $AWS_PROFILE"
+npx serverless deploy --aws-profile $AWS_PROFILE --stage $STAGE --region $REGION 
