@@ -61,6 +61,7 @@ functions:
 
   asyncFunc:
     handler: handler.asyncFunc
+    timeout: 120 # Timeout for this specific function.  Overrides the default set above.
 
 #    Define function environment variables here
 #    environment:
