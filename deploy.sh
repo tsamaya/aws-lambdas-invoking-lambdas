@@ -9,12 +9,9 @@ DEVELOP='develop'
 
 echo "Setup"
 
-echo "--Prepare environement"
-
-
-if [ ! -f ${ENV} ]; then echo "$ENV file does not exist"; exit 1;  fi
-
-export $(grep "^[^#;]" $ENV | xargs)
+# echo "--Prepare environement"
+# if [ ! -f ${ENV} ]; then echo "$ENV file does not exist"; exit 1;  fi
+# export $(grep "^[^#;]" $ENV | xargs)
 
 echo "--Prepare stage"
 BRANCH=$(git rev-parse --abbrev-ref HEAD)
@@ -34,7 +31,7 @@ if [ -z ${STAGE+x} ]; then
 fi
 
 echo "--AWS credentials"
-if [ -z ${AWS_PROFILE+x} ]; then echo "AWS_PROFILE is unset"; exit 1; else echo "AWS_PROFILE is set to '$AWS_PROFILE'"; fi
+if [ -z ${AWS_DEPLOY_PROFILE+x} ]; then echo "AWS_DEPLOY_PROFILE is unset"; exit 1; else echo "AWS_DEPLOY_PROFILE is set to '$AWS_DEPLOY_PROFILE'"; fi
 
 echo "--Prepare dependencies"
 yarn # or npm i
@@ -54,5 +51,6 @@ elif [[ $BRANCH == $DEVELOP ]]; then
   REGION=$AWS_REGION_DEV
 fi
 
-echo "Deploying from branch $BRANCH to stage $STAGE in region $REGION"
-npx serverless deploy  --aws-profile $AWS_PROFILE --stage $STAGE --region $REGION 
+echo "Deploy"
+echo "--Deploying from branch $BRANCH to stage $STAGE in region $REGION using profile $AWS_PROFILE"
+npx serverless deploy --aws-profile $AWS_DEPLOY_PROFILE --stage $STAGE --region $REGION 
