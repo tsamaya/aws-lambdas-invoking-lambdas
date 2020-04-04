@@ -2,6 +2,7 @@ version: 2.1
 
 orbs:
   node: circleci/node@2.0.1
+  aws-cli: circleci/aws-cli@1.0.0
   slack: circleci/slack@3.4.2
 
 jobs:
@@ -19,7 +20,31 @@ jobs:
       - run: yarn test
       - slack/status
 
+  deploy:
+    executor:
+      name: node/default
+      tag: '12.16'
+    steps:
+      - checkout
+      - node/install-packages:
+          pkg-manager: yarn
+          cache-key: yarn.lock
+      - aws-cli/setup
+      - run: ./deploy.sh
+      - slack/status
+
 workflows:
-  build-and-test:
+  version: 2
+  build-and-deploy:
     jobs:
       - build-and-test
+      - deploy:
+          context: aws
+          requires:
+            - build-and-test
+          filters:
+            branches:
+              only:
+                - develop
+                - master
+                - /release-.*/
