@@ -29,6 +29,7 @@ jobs:
       - node/install-packages:
           pkg-manager: yarn
           cache-key: yarn.lock
+      - awscli/setup
       - run: ./deploy.sh
       - slack/status
 
