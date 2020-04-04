@@ -22,8 +22,9 @@ jobs:
 
   deploy:
     executor:
-      name: node/default
-      tag: '12.16'
+      aws-cli/default
+      # name: node/default
+      # tag: '12.16'
     steps:
       - checkout
       - node/install-packages:
