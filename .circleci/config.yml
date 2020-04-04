@@ -22,15 +22,16 @@ jobs:
 
   deploy:
     executor:
-      aws-cli/default
-      # name: node/default
-      # tag: '12.16'
+      name: node/default
+      tag: '12.16'
+      # aws-cli/default
     steps:
       - checkout
       - node/install-packages:
           pkg-manager: yarn
           cache-key: yarn.lock
-      - aws-cli/setup
+      - aws-cli/setup:
+          profile-name: tsamaya
       - run: ./deploy.sh
       - slack/status
 
