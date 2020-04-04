@@ -14,7 +14,7 @@
 
 ## AWS Credentials
 
-For deployment, an AWS account is needed. The AWS Lambda free usage tier includes 1M free requests per month and 400,000 GB-seconds of compute time per month. Check AWS lambda [pricing]().
+For deployment, an AWS account is needed. The AWS Lambda free usage tier includes 1M free requests per month and 400,000 GB-seconds of compute time per month. Check AWS lambda [pricing](https://aws.amazon.com/lambda/pricing/).
 
 Please have a look at that video on [setting up credentials](https://www.youtube.com/watch?v=KngM5bfpttA)
 
@@ -145,7 +145,7 @@ open your browser with http://localhost:3000/dev/hello or `$ curl http://localho
 
 ### deploy
 
-1. create a .env file with the AWS_REGION_DEV, AWS_REGION_INT, or AWS_REGION_PROD regarding the branch you need to deploy; and the AWS_PROFILE you want to use
+1. Setup environment variables according to the stage you want to deploy AWS_REGION_DEV, AWS_REGION_INT, or AWS_REGION_PROD regarding the branch you need to deploy; and the AWS_DEPLOY_PROFILE you want to use
 
 2. run the deploy.sh script:
 
@@ -165,10 +165,9 @@ success Already up-to-date.
 AWS_REGION_DEV is unset
 ➜  aws-lambdas-invoking-lambdas git:(develop) ✗ ./deploy.sh
 Setup
---Prepare environement
 --Prepare stage
 --AWS credentials
-AWS_PROFILE is set to 'tsamaya'
+AWS_DEPLOY_PROFILE is set to 'tsamaya'
 --Prepare dependencies
 yarn install v1.22.0
 [1/4] 🔍  Resolving packages...
