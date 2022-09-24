@@ -38,13 +38,13 @@ workflows:
   build-and-deploy:
     jobs:
       - build-and-test
-      - deploy:
-          context: aws
-          requires:
-            - build-and-test
-          filters:
-            branches:
-              only:
-                - develop
-                - master
-                - /release-.*/
+      # - deploy:
+      #     context: aws
+      #     requires:
+      #       - build-and-test
+      #     filters:
+      #       branches:
+      #         only:
+      #           - develop
+      #           - master
+      #           - /release-.*/
